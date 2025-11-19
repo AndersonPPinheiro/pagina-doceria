@@ -1,0 +1,370 @@
+/* CSS Básico */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7e6e6; /* Exemplo de um rosa bebê */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 380px;
+    text-align: center;
+}
+
+h2 {
+    color: #8b4513; /* Marrom chocolate */
+    margin-bottom: 25px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+.inputUser {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+    outline: none;
+}
+
+.btn-login {
+    background-color: #ff69b4; /* Rosa choque (morango) */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-login:hover {
+    background-color: #e65a9e;
+}
+
+.register-prompt {
+    margin-top: 25px;
+    padding-top: 15px;
+    border-top: 1px solid #eee;
+    font-size: 14px;
+}
+
+.register-link {
+    color: #ff69b4; /* Cor de destaque para o link */
+    font-weight: bold;
+    text-decoration: none;
+    display: block; /* Garante que o link fique em sua própria linha */
+    margin-top: 5px;
+}
+
+/* REGISTRO */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f7e6e6; /* Rosa bebê */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+}
+
+.register-container {
+    background-color: white;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 450px; /* Um pouco mais largo que o login */
+    text-align: center;
+}
+
+h2 {
+    color: #8b4513; /* Marrom chocolate */
+    margin-bottom: 25px;
+}
+
+.input-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.input-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilos para todos os inputs de texto/email/senha */
+.input-group input:not([type="checkbox"]) { 
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-sizing: border-box;
+}
+
+.btn-register {
+    background-color: #ff69b4; /* Rosa choque (morango) */
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 16px;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-register:hover {
+    background-color: #e65a9e;
+}
+
+.login-link {
+    display: block;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #8b4513;
+    text-decoration: none;
+}
+
+/* CATALOGO PRINCIPAL */
+/* --- Header --- */
+.main-header {
+    background-color: #ffffff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* Sombra um pouco mais forte para destacar */
+    width: 100%;
+    position: fixed; /* ALTERADO: Fixa o cabeçalho na tela */
+    top: 0;
+    left: 0; /* Garante que ele comece no canto esquerdo */
+    z-index: 1001;
+}
+
+.header-content {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #ff69b4; /* Cor da marca */
+    font-size: 24px;
+    margin: 0;
+    font-family: 'Georgia', serif; /* Fonte que sugere algo artesanal */
+}
+
+.main-nav a {
+    color: #8b4513; /* Marrom */
+    text-decoration: none;
+    margin-left: 20px;
+    padding: 5px 10px;
+    transition: color 0.3s;
+    font-weight: 500;
+}
+
+.main-nav a:hover, .main-nav a.active {
+    color: #ff69b4;
+    border-bottom: 2px solid #ff69b4;
+}
+
+.logout-link {
+    color: #888 !important; /* Cor mais neutra para 'Sair' */
+}
+
+/* --- Estilos do Ícone Hamburger --- */
+.hamburger-menu {
+    display: none;
+    cursor: pointer;
+    padding: 10px;
+}
+
+.hamburger-menu .bar {
+    width: 25px;
+    height: 3px;
+    background-color: #8b4513;
+    margin: 5px 0;
+    transition: 0.4s;
+}
+
+@media (max-width: 768px) {
+    /* 1. Mostra o ícone e esconde o menu */
+    .hamburger-menu {
+        display: block; /* Mostra o ícone hamburger no mobile */
+    }
+    
+    .main-nav {
+        /* Esconde a navegação principal (menu) por padrão */
+        display: none; 
+        position: absolute;
+        top: 60px; /* Abaixo do header fixo (ajuste se seu header for mais alto) */
+        left: 0;
+        width: 100%;
+        background-color: #fcfcfc; /* Fundo leve para o menu aberto */
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        z-index: 999;
+        text-align: center;
+        padding-bottom: 10px;
+    }
+    
+    /* 2. Estiliza os links do menu aberto */
+    .main-nav a {
+        display: block; /* Cada link ocupa sua própria linha */
+        margin: 0;
+        padding: 12px 0;
+        border-bottom: 1px solid #eee;
+    }
+
+    .main-nav a:hover, .main-nav a.active {
+        background-color: #f7e6e6; /* Cor de fundo suave ao passar o mouse */
+        border-bottom: none;
+    }
+    
+    /* 3. CLASSE ATIVA (Mostra o menu quando o JS adiciona esta classe) */
+    .main-nav.active {
+        display: block;
+    }
+    
+    /* 4. Animação do Hamburger (transforma em um "X") */
+    .hamburger-menu.open .bar:nth-child(1) {
+        transform: translateY(8px) rotate(45deg);
+    }
+
+    .hamburger-menu.open .bar:nth-child(2) {
+        opacity: 0;
+    }
+
+    .hamburger-menu.open .bar:nth-child(3) {
+        transform: translateY(-8px) rotate(-45deg);
+    }
+}
+/* ------ */
+
+
+/* --- Catálogo --- */
+.catalog-main {
+    max-width: 1400px;
+    margin: 40px auto;
+    padding: 0 20px;
+    padding-top: 50px;
+}
+
+.catalog-main h2 {
+    text-align: center;
+    color: #8b4513;
+    margin-bottom: 30px;
+    font-size: 30px;
+}
+
+/* Layout de Grade (Grid) */
+.product-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;;
+    gap: 30px;
+}
+
+/* Card de Produto */
+.product-card {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s;
+}
+
+.product-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.product-card img {
+    width: 100%;
+    height: 220px;
+    object-fit: cover;
+}
+
+.product-info {
+    padding: 20px;
+    text-align: left;
+}
+
+.product-info h3 {
+    color: #8b4513;
+    margin-top: 0;
+    margin-bottom: 10px;
+    font-size: 20px;
+}
+
+.product-description {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 15px;
+    min-height: 40px; /* Para manter o card uniforme */
+}
+
+.product-price {
+    display: block;
+    font-size: 24px;
+    font-weight: bold;
+    color: #ff69b4; /* Preço em destaque */
+    margin-bottom: 15px;
+}
+
+.btn-add-cart {
+    background-color: #ff69b4;
+    color: white;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    width: 100%;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-add-cart:hover {
+    background-color: #e65a9e;
+}
+
+@media (max-width: 768px) {
+    /* Em telas menores que 768px (tablets e celulares), altera o layout */
+    .product-grid {
+        /* Altera para 1 coluna apenas para melhor visualização em celular */
+        grid-template-columns: 1fr; 
+    }
+    
+    .header-content {
+        align-items: center; 
+        justify-content: space-between;
+    }
+    
+    .main-nav a {
+        margin: 5px 10px;
+        display: inline-block;
+    }
+}
+/* ------ */
