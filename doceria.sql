@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 21/11/2025 às 15:02
+-- Tempo de geração: 23/11/2025 às 22:49
 -- Versão do servidor: 10.4.32-MariaDB
 -- Versão do PHP: 8.2.12
 
@@ -20,6 +20,27 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `doceria`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura para tabela `carrinho`
+--
+
+CREATE TABLE `carrinho` (
+  `id` int(11) NOT NULL,
+  `id_usuario` int(11) NOT NULL,
+  `id_produto` int(11) NOT NULL,
+  `quantidade` int(11) NOT NULL DEFAULT 1
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Despejando dados para a tabela `carrinho`
+--
+
+INSERT INTO `carrinho` (`id`, `id_usuario`, `id_produto`, `quantidade`) VALUES
+(9, 20, 3, 1),
+(10, 20, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -96,11 +117,18 @@ CREATE TABLE `usuarios` (
 
 INSERT INTO `usuarios` (`id`, `nome_completo`, `email`, `telefone`, `senha`, `cargo`, `data_registro`) VALUES
 (15, 'Anderson Pereira Pinheiro', 'anderson@gmail.com', '91981506918', '$2y$10$wWeW6jt6YTFCOzgrsFKUvuVszNCEzveant5wXvTe0boFlNtkAjHNa', 'gerente', '2025-11-20 11:25:27'),
-(16, 'Amanda Luiza', 'amanda@gmail.com', '91980142935', '$2y$10$MHY7QlOZYmPYv6kRXJfFIuwtbGUFHfSNirOKb9Eh3wJ99gB4pd9Py', 'cliente', '2025-11-20 13:50:10');
+(20, 'Lucas', 'lucas@gmail.com', '99999999999', '$2y$10$P0gRbUhVc0EYLaMCOhgqh.YfWsdXQkwMdYHcdraFFI8CN0xB59eB.', 'cliente', '2025-11-23 18:41:51');
 
 --
 -- Índices para tabelas despejadas
 --
+
+--
+-- Índices de tabela `carrinho`
+--
+ALTER TABLE `carrinho`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `id_usuario` (`id_usuario`);
 
 --
 -- Índices de tabela `itens_pedido`
@@ -135,6 +163,12 @@ ALTER TABLE `usuarios`
 --
 
 --
+-- AUTO_INCREMENT de tabela `carrinho`
+--
+ALTER TABLE `carrinho`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+
+--
 -- AUTO_INCREMENT de tabela `itens_pedido`
 --
 ALTER TABLE `itens_pedido`
@@ -156,11 +190,17 @@ ALTER TABLE `produtos`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- Restrições para tabelas despejadas
 --
+
+--
+-- Restrições para tabelas `carrinho`
+--
+ALTER TABLE `carrinho`
+  ADD CONSTRAINT `carrinho_ibfk_1` FOREIGN KEY (`id_usuario`) REFERENCES `usuarios` (`id`);
 
 --
 -- Restrições para tabelas `itens_pedido`
