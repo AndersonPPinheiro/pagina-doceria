@@ -30,13 +30,12 @@ $result = $conexao->query($sql);
             </div>
 
             <nav class="main-nav" id="nav-links">
-                <a href="menu.php" class="active">Produtos</a>
+                <a href="menu.php" class="active">Menu</a>
                 <?php if ($usuario_logado): ?>
-                    <a href="minha_conta.php">Minha Conta</a>
                     <?php if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 'gerente'): ?>
                         <a href="admin/admin_usuarios.php">Admin</a>
                     <?php endif; ?>
-                    <a href="deslogar.php" class="logout-link">Sair</a>
+                    <a href="perfil/perfil.php">Perfil</a>
                 <?php else: ?>
                     <a href="login.php" class="login-link">Entrar</a>
                 <?php endif; ?>

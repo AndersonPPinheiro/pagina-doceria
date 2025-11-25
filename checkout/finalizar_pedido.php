@@ -8,7 +8,7 @@ if (!isset($_SESSION['id'])) {
 }
 
 $id_usuario = $_SESSION['id'];
-$pagamento = $_POST['pagamento'];
+$pagamento = $_POST['pagamento'] ?? 'pix';
 
 // Buscar itens do carrinho
 $sql = "SELECT c.id_produto, c.quantidade, p.preco 
@@ -24,6 +24,11 @@ $itens = [];
 while ($row = $res->fetch_assoc()) {
     $total += $row['preco'] * $row['quantidade'];
     $itens[] = $row;
+}
+
+if (empty($itens)) {
+    header("Location: ../menu.php?erro=carrinho_vazio");
+    exit;
 }
 
 // Criar pedido

@@ -39,7 +39,8 @@
             </nav>
         </div>
     </header>
-    <main class="register-container admin">
+
+    <main class="register-container admin produtos">
         <h2 class="h2 admin">Painel Gerenciamento</h2>
         <h3 class="h3 admin">Produtos</h3>
 

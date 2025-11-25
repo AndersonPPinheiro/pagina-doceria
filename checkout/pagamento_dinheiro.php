@@ -1,23 +1,21 @@
 <?php
-include("../verificar_login.php");
+session_start();
+
+if (!isset($_SESSION['id'])) {
+    header("Location: ../login.php");
+    exit;
+}
+
+// Forma de pagamento
+$pagamento = "dinheiro";
+
+// Envia diretamente para finalizar o pedido
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>Pagamento em Dinheiro</title>
-    <link rel="stylesheet" href="css/style.css">
-</head>
+<form id="form_dinheiro" action="finalizar_pedido.php" method="POST">
+    <input type="hidden" name="pagamento" value="<?= $pagamento ?>">
+</form>
 
-<body>
-    <main class="cash-container">
-        <h2>Pagamento na Entrega</h2>
-
-        <p>Você pagará ao entregador quando o pedido chegar.</p>
-
-        <a class="btn-fake-paid" href="finalizar_pedido.php?pagamento=dinheiro">
-            Confirmar Pedido
-        </a>
-    </main>
-</body>
-</html>
+<script>
+// Envia automaticamente
+document.getElementById('form_dinheiro').submit();
+</script>

@@ -11,7 +11,7 @@ include("../conexao.php");
     <link rel="stylesheet" href="../css/style.css">
 </head>
 
-<body class="no-mobile-padding">
+<body class="payment-page">
     <main class="pix-container">
 
         <h2 class="pix-title">Pagamento via Pix</h2>
@@ -35,7 +35,11 @@ include("../conexao.php");
                 em poucos segundos após a transferência.
             </p>
 
-            <a href="sucesso.php" class="btn-confirmar">Já paguei</a>
+            <!-- <a href="pedido_sucesso.php" class="btn-confirmar">Já paguei</a> -->
+            <form action="finalizar_pedido.php" method="POST">
+                <input type="hidden" name="pagamento" value="pix">
+                <button class="btn-confirmar">Confirmar Pagamento</button>
+            </form>
         </div>
 
     </main>
