@@ -77,7 +77,7 @@ $usuario = $sql->fetch_assoc();
             <hr>
 
             <a class="perfil-link" href="meus_pedidos.php">📦 Meus Pedidos</a>
-            <a class="perfil-link sair" href="../deslogar.php">🚪 Sair</a>
+            <a class="perfil-link sair" href="../check/deslogar.php">🚪 Sair</a>
         </div>
     </div>
 
