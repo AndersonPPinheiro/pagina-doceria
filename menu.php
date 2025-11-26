@@ -5,9 +5,9 @@ if (session_status() == PHP_SESSION_NONE) {
 
 $usuario_logado = isset($_SESSION['id']);
 
-include_once('conexao.php');
+include_once('check/conexao.php');
 
-$sql = "SELECT * FROM produtos";
+$sql = "SELECT * FROM produtos WHERE situacao = 'ativo'";
 $result = $conexao->query($sql);
 ?>
 <!DOCTYPE html>

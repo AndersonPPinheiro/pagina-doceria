@@ -1,12 +1,11 @@
 <?php
-include("../verificar_login.php");
-include("../conexao.php");
+include("../check/verificar_login.php");
+include("../check/conexao.php");
 
 $id_usuario = $_SESSION['id'];
 $id_pedido = intval($_GET['id']);
 $usuario_logado = isset($_SESSION['id']);
 
-// Verifica se o pedido pertence ao usuário
 $sql = "SELECT * FROM pedidos 
         WHERE id = $id_pedido AND id_usuario = $id_usuario";
 
@@ -18,7 +17,6 @@ if ($res->num_rows == 0) {
 
 $pedido = $res->fetch_assoc();
 
-// Itens
 $sql_itens = "SELECT pi.*, p.nome 
               FROM itens_pedido pi
               JOIN produtos p ON p.id = pi.id_produto
@@ -49,12 +47,12 @@ $itens = $conexao->query($sql_itens);
             <nav class="main-nav" id="nav-links">
                 <a href="../menu.php">Menu</a>
                 <?php if ($usuario_logado): ?>
-                    <a href="perfil.php">Minha Conta</a>
                     <?php if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 'gerente'): ?>
                         <a href="../admin/admin_usuarios.php">Admin</a>
                     <?php endif; ?>
+                    <a href="perfil.php" class="active">Perfil</a>
                 <?php else: ?>
-                    <a href="login.php" class="login-link">Entrar</a>
+                    <a href="../login.php" class="login-link">Entrar</a>
                 <?php endif; ?>
             </nav>
         </div>

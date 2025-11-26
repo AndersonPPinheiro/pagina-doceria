@@ -6,7 +6,7 @@
         exit();
     }
 
-    include_once('../conexao.php');
+    include_once('../check/conexao.php');
 
     $id = $_GET['id'];
 

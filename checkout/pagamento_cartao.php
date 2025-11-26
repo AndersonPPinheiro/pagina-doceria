@@ -1,5 +1,5 @@
 <?php
-include("../verificar_login.php");
+include("../check/verificar_login.php");
 ?>
 <!DOCTYPE html>
 <html>

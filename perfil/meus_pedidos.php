@@ -1,11 +1,10 @@
 <?php
-include("../verificar_login.php");
-include("../conexao.php");
+include("../check/verificar_login.php");
+include("../check/conexao.php");
 
 $id_usuario = $_SESSION['id'];
 $usuario_logado = isset($_SESSION['id']);
 
-// Buscar pedidos
 $sql = "SELECT * FROM pedidos 
         WHERE id_usuario = $id_usuario
         ORDER BY criado_em DESC";
@@ -35,12 +34,12 @@ $res = $conexao->query($sql);
             <nav class="main-nav" id="nav-links">
                 <a href="../menu.php">Menu</a>
                 <?php if ($usuario_logado): ?>
-                    <a href="perfil.php">Minha Conta</a>
                     <?php if (isset($_SESSION['cargo']) && $_SESSION['cargo'] == 'gerente'): ?>
                         <a href="../admin/admin_usuarios.php">Admin</a>
                     <?php endif; ?>
+                    <a href="perfil.php" class="active">Perfil</a>
                 <?php else: ?>
-                    <a href="login.php" class="login-link">Entrar</a>
+                    <a href="../login.php" class="login-link">Entrar</a>
                 <?php endif; ?>
             </nav>
         </div>
@@ -52,7 +51,6 @@ $res = $conexao->query($sql);
 
         <?php if ($res->num_rows == 0): ?>
             <p class="no-pedidos">Você ainda não fez nenhum pedido.</p>
-
         <?php else: ?>
 
             <div class="lista-pedidos">

@@ -6,7 +6,6 @@ document.querySelector('.floating-cart').addEventListener('click', () => {
     overlay.style.display = 'block';
     modal.style.display = 'block';
 
-    // Acessibilidade corrigida
     modal.setAttribute('aria-hidden', 'false');
 
     carregar_carrinho();
@@ -23,7 +22,6 @@ function fechar_carrinho() {
     overlay.style.display = 'none';
     modal.style.display = 'none';
 
-    // Acessibilidade corrigida
     modal.setAttribute('aria-hidden', 'true');
 }
 

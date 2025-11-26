@@ -1,12 +1,9 @@
 <?php
-error_reporting(0);
-ini_set('display_errors', 0);
-
 if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
 
-include("../conexao.php");
+include("../check/conexao.php");
 
 // Se não estiver logado, retorna carrinho vazio
 if (!isset($_SESSION['id'])) {
@@ -38,8 +35,7 @@ while ($row = $res->fetch_assoc()) {
     ];
 }
 
-$total_qtd = $conexao->query("
-    SELECT SUM(quantidade) AS total FROM carrinho WHERE id_usuario = $id_usuario
+$total_qtd = $conexao->query("SELECT SUM(quantidade) AS total FROM carrinho WHERE id_usuario = $id_usuario
 ")->fetch_assoc()['total'] ?? 0;
 
 echo json_encode([

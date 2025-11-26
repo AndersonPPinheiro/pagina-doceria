@@ -1,5 +1,5 @@
 <?php 
-    include_once('conexao.php');
+    include_once('check/conexao.php');
 
     if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nome = filter_input(INPUT_POST, 'nome', FILTER_SANITIZE_SPECIAL_CHARS);
@@ -71,7 +71,8 @@
             
             <div class="input-group">
                 <label for="password">Senha</label>
-                <input type="password" id="password" name="senha" class="inputUser" placeholder="Crie uma senha forte" required>
+                <input type="password" id="password" minlength="6" name="senha" class="inputUser" placeholder="Crie uma senha forte" required>
+                <p class="p-senha">Minimo 6 Digitos</p>
             </div>
 
             <div class="input-group">

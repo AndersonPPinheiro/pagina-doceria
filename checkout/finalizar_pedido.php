@@ -1,6 +1,6 @@
 <?php
 session_start();
-include("../conexao.php");
+include("../check/conexao.php");
 
 if (!isset($_SESSION['id'])) {
     header("Location: ../login.php");
@@ -10,7 +10,6 @@ if (!isset($_SESSION['id'])) {
 $id_usuario = $_SESSION['id'];
 $pagamento = $_POST['pagamento'] ?? 'pix';
 
-// Buscar itens do carrinho
 $sql = "SELECT c.id_produto, c.quantidade, p.preco 
         FROM carrinho c
         JOIN produtos p ON p.id = c.id_produto

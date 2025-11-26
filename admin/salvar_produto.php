@@ -1,29 +1,38 @@
-<?php 
-    session_start();
+<?php
+include("../check/conexao.php");
 
-    if (!isset($_SESSION['cargo']) || $_SESSION['cargo'] !== 'gerente') {
-        header('Location: ../login.php');
-        exit();
+// Recebe dados
+$nome = $_POST['nome'];
+$descricao = $_POST['descricao'];
+$preco = $_POST['preco'];
+$situacao = $_POST['situacao'];
+
+// Verifica upload
+$imagem = "";
+if (isset($_FILES['imagem']) && $_FILES['imagem']['error'] === 0) {
+
+    $pasta = "../img/";
+    if (!is_dir($pasta)) {
+        mkdir($pasta, 0777, true);
     }
 
-    include_once('../conexao.php');
+    $nomeImagem = uniqid() . "_" . $_FILES['imagem']['name'];
+    $caminhoCompleto = $pasta . $nomeImagem;
 
-    $nome = $_POST['nome'];
-    $descricao = $_POST['descricao'];
-    $preco = $_POST['preco'];
-    $imagem = $_POST['imagem'];
+    move_uploaded_file($_FILES['imagem']['tmp_name'], $caminhoCompleto);
 
-    $sql = "INSERT INTO produtos (nome, descricao, preco, imagem_url) VALUES (?, ?, ?, ?)";
-    $statement = $conexao -> prepare($sql);
-    $statement -> bind_param("ssds", $nome, $descricao, $preco, $imagem);
+    // Caminho salvo no banco
+    $imagem = "img/" . $nomeImagem;
+}
 
-    if ($statement -> execute()) {
-        header('Location: admin_produtos.php?sucesso=1');
-    }
-    else {
-        echo "Erro ao Salvar o Produto";
-    }
+// Salvar produto no banco
+$stmt = $conexao->prepare("INSERT INTO produtos (nome, descricao, preco, imagem_url, situacao)
+    VALUES (?, ?, ?, ?, ?)
+");
 
-    $statement -> close();
-    $conexao -> close();
+$stmt->bind_param("ssdss", $nome, $descricao, $preco, $imagem, $situacao);
+$stmt->execute();
+
+header("Location: admin_produtos.php?ok=1");
+exit;
 ?>

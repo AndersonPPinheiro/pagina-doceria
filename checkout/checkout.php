@@ -1,10 +1,9 @@
 <?php
-include("../verificar_login.php");
-include("../conexao.php");
+include("../check/verificar_login.php");
+include("../check/conexao.php");
 
 $id_usuario = $_SESSION['id'];
 
-// Buscar itens do carrinho
 $sql = "SELECT c.id_produto, c.quantidade, p.nome, p.preco 
         FROM carrinho c
         JOIN produtos p ON p.id = c.id_produto

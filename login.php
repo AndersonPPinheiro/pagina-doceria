@@ -19,7 +19,7 @@
             }
         ?>
 
-        <form action="validar_login.php" method="POST">
+        <form action="check/validar_login.php" method="POST">
             <div class="input-group">
                 <label for="email">E-mail</label>
                 <input type="email" id="email" name="email" class="inputUser" placeholder="seu@email.com" required>

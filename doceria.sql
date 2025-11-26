@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Tempo de geração: 25-Nov-2025 às 21:38
+-- Tempo de geração: 26-Nov-2025 às 21:35
 -- Versão do servidor: 10.4.32-MariaDB
 -- versão do PHP: 8.2.12
 
@@ -33,14 +33,6 @@ CREATE TABLE `carrinho` (
   `id_produto` int(11) NOT NULL,
   `quantidade` int(11) NOT NULL DEFAULT 1
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Extraindo dados da tabela `carrinho`
---
-
-INSERT INTO `carrinho` (`id`, `id_usuario`, `id_produto`, `quantidade`) VALUES
-(29, 15, 3, 1),
-(30, 15, 4, 1);
 
 -- --------------------------------------------------------
 
@@ -73,7 +65,10 @@ INSERT INTO `itens_pedido` (`id`, `id_pedido`, `id_produto`, `quantidade`, `prec
 (10, 9, 1, 1, 15.99),
 (11, 9, 3, 1, 11.99),
 (12, 9, 4, 1, 8.99),
-(13, 10, 1, 1, 15.99);
+(13, 10, 1, 1, 15.99),
+(14, 11, 1, 2, 15.99),
+(15, 11, 3, 2, 11.99),
+(16, 11, 4, 2, 8.99);
 
 -- --------------------------------------------------------
 
@@ -100,8 +95,9 @@ INSERT INTO `pedidos` (`id`, `id_usuario`, `total`, `pagamento`, `status`, `cria
 (6, 20, 123.92, 'pix', 'cancelado', '2025-11-25 15:56:33'),
 (7, 15, 67.95, 'pix', 'cancelado', '2025-11-25 15:57:01'),
 (8, 15, 27.98, 'pix', 'cancelado', '2025-11-25 15:58:47'),
-(9, 15, 36.97, 'pix', 'pendente', '2025-11-25 16:24:44'),
-(10, 15, 15.99, 'dinheiro', 'pendente', '2025-11-25 17:23:44');
+(9, 15, 36.97, 'pix', 'cancelado', '2025-11-25 16:24:44'),
+(10, 15, 15.99, 'dinheiro', 'cancelado', '2025-11-25 17:23:44'),
+(11, 15, 73.94, 'pix', 'pendente', '2025-11-26 16:15:55');
 
 -- --------------------------------------------------------
 
@@ -116,7 +112,7 @@ CREATE TABLE `produtos` (
   `preco` decimal(10,2) NOT NULL,
   `imagem_url` varchar(255) NOT NULL,
   `categoria` varchar(50) NOT NULL,
-  `situacao` tinyint(1) NOT NULL
+  `situacao` enum('ativo','inativo') NOT NULL DEFAULT 'ativo'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -124,9 +120,10 @@ CREATE TABLE `produtos` (
 --
 
 INSERT INTO `produtos` (`id`, `nome`, `descricao`, `preco`, `imagem_url`, `categoria`, `situacao`) VALUES
-(1, 'Bolo de Chocolate', 'Bolinho porrada de Chocolate Potente.', 15.99, 'img/bolo_chocolate.jpg', 'Bolo', 1),
-(3, 'Torta de Limão', 'Tortinha Potente', 11.99, 'img/torta_limao_merengue.jpg', 'Torta', 1),
-(4, 'Brigadeiro Gourmet (Caixa c/ 12 un)', 'Um Brigadeiro Delicioso com Recheio de Ninho!', 8.99, 'img/caixa_brigadeiro_gourmet.jpg', '', 0);
+(1, 'Bolo de Chocolate', 'Bolinho porrada de Chocolate Potente.', 15.99, 'img/bolo_chocolate.jpg', 'Bolo', 'ativo'),
+(3, 'Torta de Limão', 'Tortinha Potente', 11.99, 'img/torta_limao_merengue.jpg', 'Torta', 'ativo'),
+(4, 'Brigadeiro Gourmet (Caixa c/ 12 un)', 'Um Brigadeiro Delicioso com Recheio de Ninho!', 8.99, 'img/caixa_brigadeiro_gourmet.jpg', '', 'ativo'),
+(5, 'Sonho', 'Um Doce com massa de Pão com recheio de Ninho', 5.99, 'img/sonho.jpg', '', 'ativo');
 
 -- --------------------------------------------------------
 
@@ -149,7 +146,7 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id`, `nome_completo`, `email`, `telefone`, `senha`, `cargo`, `data_registro`) VALUES
-(15, 'Anderson Pereira Pinheiro', 'anderson@gmail.com', '91981506918', '$2y$10$wWeW6jt6YTFCOzgrsFKUvuVszNCEzveant5wXvTe0boFlNtkAjHNa', 'gerente', '2025-11-20 11:25:27'),
+(15, 'Anderson Pereira Pinheiro', 'anderson@gmail.com', '91981506918', '$2y$10$0gLZT05ECIu8CitPdL/brO9L2QTEUDN42w2OFJTZEndyWZ32bwh0C', 'gerente', '2025-11-20 11:25:27'),
 (20, 'Lucas', 'lucas@gmail.com', '99999999999', '$2y$10$P0gRbUhVc0EYLaMCOhgqh.YfWsdXQkwMdYHcdraFFI8CN0xB59eB.', 'cliente', '2025-11-23 18:41:51');
 
 --
@@ -199,25 +196,25 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `carrinho`
 --
 ALTER TABLE `carrinho`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=31;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT de tabela `itens_pedido`
 --
 ALTER TABLE `itens_pedido`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT de tabela `pedidos`
 --
 ALTER TABLE `pedidos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT de tabela `produtos`
 --
 ALTER TABLE `produtos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`

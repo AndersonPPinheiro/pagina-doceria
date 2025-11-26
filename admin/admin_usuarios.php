@@ -1,12 +1,12 @@
 <?php
-    include('../verificar_login.php');
+    include('../check/verificar_login.php');
 
     if ($_SESSION['cargo'] !== 'gerente') {
         header('Location: ../menu.php');
         exit();
     }
 
-    include_once('../conexao.php');
+    include_once('../check/conexao.php');
 
     $sql = "SELECT id, nome_completo, email, telefone, cargo FROM usuarios";
     $result = $conexao -> query($sql);

@@ -1,6 +1,6 @@
 <?php
-include("../verificar_login.php");
-include("../conexao.php");
+include("../check/verificar_login.php");
+include("../check/conexao.php");
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +35,6 @@ include("../conexao.php");
                 em poucos segundos após a transferência.
             </p>
 
-            <!-- <a href="pedido_sucesso.php" class="btn-confirmar">Já paguei</a> -->
             <form action="finalizar_pedido.php" method="POST">
                 <input type="hidden" name="pagamento" value="pix">
                 <button class="btn-confirmar">Confirmar Pagamento</button>
